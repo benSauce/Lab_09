@@ -5,7 +5,7 @@ public class Lab_09 {
     }
     public static <E extends Comparable<E>>void quickSort(E[] list, int first, int last) {
         if (last > first) {
-            E pivotIndex = partition(list, first, last);
+            int pivotIndex = partition(list, first, last);
             quickSort(list, first, pivotIndex - 1);
             quickSort(list, pivotIndex + 1, last);
         }
@@ -18,10 +18,10 @@ public class Lab_09 {
         int high = last; // Index for backward search
         while (high > low) {
             // Search forward from left
-            while (low <= high && ((list[low]).compareTo(pivot) < 0))
+            while (low <= high && (((list[low]).compareTo(pivot) < 0) || (list[low]).compareTo(pivot) == 0 ))
                 low++;
             // Search backward from right
-            while (low <= high && ((list[high]).compareTo(pivot) > 0))
+            while (low <= high && ((list[high]).compareTo(pivot) > 0) )
                 high--;
             // Swap two elements in the list
             if (high > low) {
@@ -30,7 +30,7 @@ public class Lab_09 {
                 list[low] = temp;
             }
         }
-        while (high > first && ((list[high]).compareTo(pivot) > 0))
+        while (high > first && ((list[high]).compareTo(pivot) > 0 || (list[high]).compareTo(pivot) == 0))
             high--;
         // Swap pivot with list[high]
         if (((pivot).compareTo(list[high]) > 0)) {
@@ -44,8 +44,8 @@ public class Lab_09 {
     }
     /** A test method */
     public static void main(String[] args) {
-        int[] list = {2, 3, 2, 5, 6, 1, -2, 3, 14, 12};
-        quickSort(list);
+        Integer[] list = {2, 3, 2, 5, 6, 1, -2, 3, 14, 12};
+         quickSort(list);
         for (int j : list) System.out.print(j + " ");
     }
 }
